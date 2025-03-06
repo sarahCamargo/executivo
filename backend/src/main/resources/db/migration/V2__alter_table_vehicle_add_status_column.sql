@@ -1,0 +1,5 @@
+ALTER TABLE veiculos RENAME TO veiculo;
+
+ALTER TABLE veiculo ADD COLUMN status VARCHAR(20) DEFAULT 'DISPONIVEL';
+
+ALTER TABLE veiculo ADD COLUMN valor_locacao NUMERIC(10,2);

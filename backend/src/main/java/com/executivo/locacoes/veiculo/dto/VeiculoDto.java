@@ -1,6 +1,7 @@
 package com.executivo.locacoes.veiculo.dto;
 
 import com.executivo.locacoes.veiculo.enums.EnumCondicao;
+import com.executivo.locacoes.veiculo.enums.EnumStatus;
 import com.executivo.locacoes.veiculo.enums.EnumTipoCombustivel;
 import com.executivo.locacoes.veiculo.enums.EnumTipoTransmissao;
 import com.executivo.locacoes.veiculo.model.Veiculo;
@@ -8,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
@@ -30,6 +32,8 @@ public class VeiculoDto {
     private String urlImagem;
     private String cpfProprietario;
     private LocalDateTime dataCriacao;
+    private EnumStatus status;
+    private BigDecimal valorLocacao;
 
     public static VeiculoDto of(Veiculo veiculo) {
         return VeiculoDto.builder()
@@ -47,6 +51,8 @@ public class VeiculoDto {
                 .urlImagem(veiculo.getUrlImagem())
                 .cpfProprietario(veiculo.getCpfProprietario())
                 .dataCriacao(veiculo.getDataCriacao())
+                .status(veiculo.getStatus())
+                .valorLocacao(veiculo.getValorLocacao())
                 .build();
     }
 
@@ -65,6 +71,8 @@ public class VeiculoDto {
                 .urlImagem(this.getUrlImagem())
                 .cpfProprietario(this.getCpfProprietario())
                 .dataCriacao(this.getDataCriacao())
+                .status(this.getStatus())
+                .valorLocacao(this.getValorLocacao())
                 .build();
     }
 }

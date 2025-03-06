@@ -1,13 +1,16 @@
 package com.executivo.locacoes.veiculo.model;
 
 import com.executivo.locacoes.veiculo.enums.EnumCondicao;
+import com.executivo.locacoes.veiculo.enums.EnumStatus;
 import com.executivo.locacoes.veiculo.enums.EnumTipoCombustivel;
 import com.executivo.locacoes.veiculo.enums.EnumTipoTransmissao;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
@@ -15,14 +18,15 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "veiculos")
+@Table(name = "veiculo")
 public class Veiculo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "placa")
+    @Column(name = "placa", nullable = false)
     private String placa;
 
     @Column(name = "modelo")
@@ -34,7 +38,7 @@ public class Veiculo {
     @Column(name = "ano")
     private String ano;
 
-    @Column(name = "renavam")
+    @Column(name = "renavam", nullable = false)
     private BigInteger renavam;
 
     @Column(name = "cor")
@@ -61,6 +65,14 @@ public class Veiculo {
     @Column(name = "proprietario")
     private String cpfProprietario;
 
-    @Column(name = "data_criacao")
+    @Column(name = "data_criacao", nullable = false, updatable = false)
+    @CreationTimestamp
     private LocalDateTime dataCriacao;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private EnumStatus status;
+
+    @Column(name = "valor_locacao")
+    private BigDecimal valorLocacao;
 }
