@@ -1,10 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
-import MainAppBar from "./components/AppBar";
 
 const router = createBrowserRouter([
   {
-    element: <MainAppBar />,
+    element: <App />,
     children: [
       {
         path: "/",

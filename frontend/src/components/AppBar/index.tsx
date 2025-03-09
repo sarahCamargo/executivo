@@ -1,20 +1,50 @@
 import { MenuRounded } from "@mui/icons-material";
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import {
+  Container,
+  CssBaseline,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { StyledAppBar } from "./styles/style";
 
-function MainAppBar() {
+type MainAppBarProps = {
+  openDrawer: boolean;
+  handleDrawerOpen: () => void;
+};
+
+function MainAppBar({ openDrawer, handleDrawerOpen }: MainAppBarProps) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="salmon">
-        <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
-            <MenuRounded />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Executivo
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <>
+      <CssBaseline />
+      <StyledAppBar
+        position="fixed"
+        color="default"
+        elevation={0}
+        open={openDrawer}
+      >
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              sx={[
+                { mr: 2 },
+                { marginRight: 5 },
+                openDrawer && { display: "none" },
+              ]}
+              onClick={handleDrawerOpen}
+            >
+              <MenuRounded />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Executivo
+            </Typography>
+          </Toolbar>
+        </Container>
+      </StyledAppBar>
+    </>
   );
 }
 
