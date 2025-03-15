@@ -23,26 +23,23 @@ function MainAppBar({ openDrawer, handleDrawerOpen }: MainAppBarProps) {
         elevation={0}
         open={openDrawer}
       >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              sx={[
-                { mr: 2 },
-                { marginRight: 5 },
-                openDrawer && { display: "none" },
-              ]}
-              onClick={handleDrawerOpen}
-            >
-              <MenuRounded />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Executivo
-            </Typography>
-          </Toolbar>
-        </Container>
+        <Toolbar disableGutters>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            sx={[
+              { marginLeft: 1 },
+              openDrawer && { display: "none" },
+            ]}
+            onClick={handleDrawerOpen}
+          >
+            <MenuRounded />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 5 }}>
+            Executivo
+          </Typography>
+        </Toolbar>
       </StyledAppBar>
     </>
   );

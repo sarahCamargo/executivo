@@ -15,7 +15,10 @@ function App() {
   return (
     <>
       <MainAppBar openDrawer={openDrawer} handleDrawerOpen={handleDrawerOpen} />
-      <MenuDrawer openDrawer={openDrawer} handleDrawerClose={handleDrawerClose} />
+      <MenuDrawer
+        openDrawer={openDrawer}
+        handleDrawerClose={handleDrawerClose}
+      />
     </>
   );
 }
