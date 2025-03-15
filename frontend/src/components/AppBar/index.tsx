@@ -6,7 +6,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { StyledAppBar } from "./styles/style";
+import { StyledAppBar } from "./style";
 
 type MainAppBarProps = {
   openDrawer: boolean;

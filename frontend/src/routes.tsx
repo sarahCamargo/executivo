@@ -1,13 +1,19 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import App from "./App";
+import Cadastros from "./pages/Cadastros";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
-    element: <App />,
+    element: <Layout />,
     children: [
       {
         path: "/",
-        element: <App />,
+        element: <Home />,
+      },
+      {
+        path: "cadastros",
+        element: <Cadastros />,
       },
       {
         path: "*",

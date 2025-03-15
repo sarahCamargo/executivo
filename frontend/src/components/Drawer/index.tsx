@@ -9,8 +9,9 @@ import {
   ListItemText,
   useTheme,
 } from "@mui/material";
-import { DrawerHeader, StyledDrawer } from "./styles/style";
+import { DrawerHeader, StyledDrawer } from "./style";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import { useNavigate } from "react-router-dom";
 
 type MenuDrawerProps = {
   openDrawer: boolean;
@@ -19,6 +20,7 @@ type MenuDrawerProps = {
 
 function MenuDrawer({ openDrawer: open, handleDrawerClose }: MenuDrawerProps) {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
     <StyledDrawer variant="permanent" open={open}>
@@ -29,7 +31,7 @@ function MenuDrawer({ openDrawer: open, handleDrawerClose }: MenuDrawerProps) {
       </DrawerHeader>
       <List>
         <ListItem disablePadding sx={{ display: "block" }}>
-          <ListItemButton
+          <ListItemButton onClick={() => navigate('/cadastros')}
             sx={[
               {
                 minHeight: 48,
