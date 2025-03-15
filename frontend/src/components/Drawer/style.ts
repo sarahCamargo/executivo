@@ -29,6 +29,9 @@ const StyledDrawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme }) => ({
   width: drawerWidth,
+  "& .MuiDrawer-paper": {
+    backgroundColor: "#ED6E33",
+  },
   variants: [
     {
       props: ({ open }) => open,

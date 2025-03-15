@@ -8,19 +8,17 @@ function Layout() {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawerOpen = () => {
-    setOpenDrawer(true);
+    if (openDrawer) {
+      setOpenDrawer(false);
+    } else {
+      setOpenDrawer(true);
+    }
   };
 
-  const handleDrawerClose = () => {
-    setOpenDrawer(false);
-  };
   return (
     <>
-      <MainAppBar openDrawer={openDrawer} handleDrawerOpen={handleDrawerOpen} />
-      <MenuDrawer
-        openDrawer={openDrawer}
-        handleDrawerClose={handleDrawerClose}
-      />
+      <MainAppBar openDrawer={openDrawer} />
+      <MenuDrawer openDrawer={openDrawer} handleDrawerOpen={handleDrawerOpen} />
       <MainContent openDrawer={openDrawer}>
         <Outlet />
       </MainContent>
