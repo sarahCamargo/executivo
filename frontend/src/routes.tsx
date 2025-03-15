@@ -12,7 +12,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "cadastros",
+        path: "veiculos",
         element: <Cadastros />,
       },
       {

@@ -1,7 +1,6 @@
 import { useState, MouseEvent } from "react";
 import {
   ChevronLeftRounded,
-  EditRounded,
   MenuRounded,
 } from "@mui/icons-material";
 import {
@@ -14,10 +13,10 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  useTheme,
 } from "@mui/material";
 import { DrawerHeader, StyledDrawer } from "./style";
 import { useNavigate } from "react-router-dom";
+import menu from "../../menu";
 
 type MenuDrawerProps = {
   openDrawer: boolean;
@@ -25,25 +24,46 @@ type MenuDrawerProps = {
 };
 
 function MenuDrawer({ openDrawer: open, handleDrawerOpen }: MenuDrawerProps) {
-  const theme = useTheme();
   const navigate = useNavigate();
+  const menus = menu;
 
   const [menuPosition, setMenuPosition] = useState<{
     top: number;
     left: number;
   } | null>(null);
 
-  const handleMenuOpen = (event: MouseEvent<HTMLButtonElement>) => {
+  const [subMenu, setSubMenu] = useState<
+    {
+      title: string;
+      menuItems: [{ name: string; path: string; key: string }];
+    }[]
+  >([]);
+
+  const handleMenuOpen = (
+    event: MouseEvent<HTMLButtonElement>,
+    submenus: any
+  ) => {
+    if (!submenus || submenus.length == 0) {
+      navigate("/");
+      handleMenuClose();
+      return;
+    }
+
     const buttonRect = event.currentTarget.getBoundingClientRect();
 
     setMenuPosition({
       top: buttonRect.top + window.scrollY,
       left: open ? buttonRect.right + 10 : buttonRect.left + 56,
     });
+
+    if (submenus) {
+      setSubMenu(submenus);
+    }
   };
 
   const handleMenuClose = () => {
     setMenuPosition(null);
+    setSubMenu([]);
   };
 
   const handleNavigate = (route: string) => {
@@ -60,32 +80,38 @@ function MenuDrawer({ openDrawer: open, handleDrawerOpen }: MenuDrawerProps) {
       </DrawerHeader>
 
       <List>
-        <ListItem disablePadding sx={{ display: "block" }}>
-          <ListItemButton
-            component="button"
-            onClick={handleMenuOpen}
-            sx={{
-              minHeight: 48,
-              px: 2.5,
-              justifyContent: open ? "initial" : "center",
-            }}
+        {menus.map((menuItem) => (
+          <ListItem
+            key={menuItem.name}
+            disablePadding
+            sx={{ display: "block" }}
           >
-            <ListItemIcon
+            <ListItemButton
+              component="button"
+              onClick={(event) => handleMenuOpen(event, menuItem.submenus)}
               sx={{
-                minWidth: 0,
-                justifyContent: "center",
-                mr: open ? 3 : "auto",
-                color: "white",
+                minHeight: 48,
+                px: 2.5,
+                justifyContent: open ? "initial" : "center",
               }}
             >
-              <EditRounded />
-            </ListItemIcon>
-            <ListItemText
-              primary={"Cadastros"}
-              sx={{ opacity: open ? 1 : 0, color: "white" }}
-            />
-          </ListItemButton>
-        </ListItem>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  justifyContent: "center",
+                  mr: open ? 3 : "auto",
+                  color: "white",
+                }}
+              >
+                {menuItem.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={menuItem.name}
+                sx={{ opacity: open ? 1 : 0, color: "white" }}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
 
         <Menu
           open={Boolean(menuPosition)}
@@ -105,9 +131,22 @@ function MenuDrawer({ openDrawer: open, handleDrawerOpen }: MenuDrawerProps) {
             },
           }}
         >
-          <MenuItem onClick={() => handleNavigate("/cadastros")}>
-            Veículos
-          </MenuItem>
+          {subMenu.map((submenu, index) => (
+            <div key={submenu.title}>
+              <MenuItem sx={{ fontWeight: "bold", pointerEvents: "none" }}>
+                {submenu.title}
+              </MenuItem>
+              {submenu.menuItems.map((item) => (
+                <MenuItem
+                  key={item.path}
+                  onClick={() => handleNavigate(item.path)}
+                >
+                  {item.name}
+                </MenuItem>
+              ))}
+              {index < subMenu.length - 1 && <Divider />}
+            </div>
+          ))}
         </Menu>
       </List>
 

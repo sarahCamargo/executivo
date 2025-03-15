@@ -1,14 +1,16 @@
+import { EditRounded, HouseRounded } from "@mui/icons-material";
+
 export default [
   {
     name: "Home",
-    icon: "other_houses_outlined",
+    icon: <HouseRounded />,
     path: "/",
-    menuList: [],
+    submenus: [],
   },
   {
     name: "Cadastros",
-    icon: "",
-    menuList: [
+    icon: <EditRounded />,
+    submenus: [
       {
         title: "Veículos",
         menuItems: [
