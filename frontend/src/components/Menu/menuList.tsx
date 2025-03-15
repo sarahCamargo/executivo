@@ -1,6 +1,7 @@
 import { EditRounded, HouseRounded } from "@mui/icons-material";
+import { Menu } from "./types";
 
-export default [
+const menuList: Menu[] = [
   {
     name: "Home",
     icon: <HouseRounded />,
@@ -13,7 +14,7 @@ export default [
     submenus: [
       {
         title: "Veículos",
-        menuItems: [
+        submenuItems: [
           {
             name: "Cadastro de Veículos",
             path: "/veiculos",
@@ -23,7 +24,7 @@ export default [
       },
       {
         title: "Clientes",
-        menuItems: [
+        submenuItems: [
           {
             name: "Cadastro de Clientes",
             path: "/clientes",
@@ -34,3 +35,5 @@ export default [
     ],
   },
 ];
+
+export default menuList;

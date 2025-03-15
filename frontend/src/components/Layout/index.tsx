@@ -18,7 +18,7 @@ function Layout() {
   return (
     <>
       <MainAppBar openDrawer={openDrawer} />
-      <MenuDrawer openDrawer={openDrawer} handleDrawerOpen={handleDrawerOpen} />
+      <MenuDrawer isDrawerOpen={openDrawer} handleDrawerOpen={handleDrawerOpen} />
       <MainContent openDrawer={openDrawer}>
         <Outlet />
       </MainContent>
