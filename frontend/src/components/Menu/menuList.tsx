@@ -1,7 +1,7 @@
 import { EditRounded, HouseRounded } from "@mui/icons-material";
 import { Menu } from "./types";
-import Cadastros from "../../pages/Cadastros";
 import Home from "../../pages/Home";
+import CadastroVeiculos from "../../pages/Cadastros/Veiculos";
 
 const menuList: Menu[] = [
   {
@@ -22,7 +22,7 @@ const menuList: Menu[] = [
             name: "Cadastro de Veículos",
             path: "cadastro/veiculos",
             key: "CADASTRO_VEICULOS",
-            element: <Cadastros />,
+            element: <CadastroVeiculos />,
           },
         ],
       },
