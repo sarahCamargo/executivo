@@ -1,18 +1,20 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { ReactNode } from "react";
 import { mainContentStyles } from "./style";
+import LayoutBreadCrumb from "../Breadcrumb";
 
 interface MainContentProps {
   children: ReactNode;
   openDrawer: boolean;
 }
 
-function MainContent({ children, openDrawer }: MainContentProps) {
+const MainContent = ({ children, openDrawer }: MainContentProps) => {
   return (
-    <Box component="main" sx={mainContentStyles(openDrawer)}>
-      {children}
-    </Box>
+    <Stack sx={mainContentStyles(openDrawer)} direction="column">
+      <LayoutBreadCrumb />
+      <Box p={2}>{children}</Box>
+    </Stack>
   );
-}
+};
 
 export default MainContent;

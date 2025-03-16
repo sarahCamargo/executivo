@@ -14,6 +14,7 @@ export const StyledAppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  backgroundColor: 'white',
   variants: [
     {
       props: ({ open }) => open,
